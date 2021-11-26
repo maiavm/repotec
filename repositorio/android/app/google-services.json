@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "699500022704",
+    "project_id": "tgfatec-8cdb9",
+    "storage_bucket": "tgfatec-8cdb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699500022704:android:c6de1f0e712e987e6c2475",
+        "android_client_info": {
+          "package_name": "com.example.repositorio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699500022704-o9dvj47gu2pk6tdef068l5b14hkndhuo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOJGCRxybrRPkIl-iDJ34cd3a_dKxbXGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "699500022704-o9dvj47gu2pk6tdef068l5b14hkndhuo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
