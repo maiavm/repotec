@@ -1,2 +1,2 @@
 # repotec
-Projeto de engenharia
+Esse é um projeto da Faculdade, o mesmo esta sendo utilizado para ser apresentado como Trabalho de Graduação (TG) para concluir a mesma....

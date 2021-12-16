@@ -79,22 +79,12 @@ class _RepoPageState extends State<RepoPage> {
           loginSaved != null || loginSaved == ""
               ? UserAccountsDrawerHeader(
                   decoration: BoxDecoration(color: Color(0xFFC75555)),
-                  // currentAccountPicture: new CircleAvatar(
-                  //   backgroundImage: new NetworkImage(
-                  //       "https://icon-library.com/images/user-icon-image/user-icon-image-24.jpg"),
-                  // ),
-
                   accountName: new Text("$loginSaved"),
                   accountEmail: Text(''),
                   onDetailsPressed: () {},
                 )
               : UserAccountsDrawerHeader(
                   decoration: BoxDecoration(color: Color(0xFFC75555)),
-                  // currentAccountPicture: new CircleAvatar(
-                  //   backgroundImage: new NetworkImage(
-                  //       "https://icon-library.com/images/user-icon-image/user-icon-image-24.jpg"),
-                  // ),
-
                   accountName: ElevatedButton(
                     child: Text(
                       'Entrar',
@@ -118,93 +108,6 @@ class _RepoPageState extends State<RepoPage> {
                   ),
                   accountEmail: Text(''),
                 ),
-          // ListTile(
-          //   leading: Icon(
-          //     Icons.message_outlined,
-          //   ),
-          //   title: Text(
-          //     "Mural",
-          //     style: TextStyle(color: Colors.grey[600]),
-          //   ),
-          //   onTap: () {
-          //     Navigator.pushReplacement(
-          //       context,
-          //       MaterialPageRoute(builder: (BuildContext context) => (Home())),
-          //     );
-          //     //createAlertDialog(context);
-          //   },
-          // ),
-          // ListTile(
-          //   leading: Icon(
-          //     Icons.archive_outlined,
-          //   ),
-          //   title: Text(
-          //     "Repositório",
-          //     style: TextStyle(color: Colors.grey[600]),
-          //   ),
-          //   onTap: null,
-          //   //createAlertDialog(context);
-          // ),
-          // ListTile(
-          //   leading: Icon(Icons.calendar_today_outlined),
-          //   title: Text(
-          //     "Calendário",
-          //     style: TextStyle(color: Colors.grey[600]),
-          //   ),
-          //   onTap: null,
-          // ),
-          // ListTile(
-          //   leading: Icon(Icons.grid_on_outlined),
-          //   title: Text(
-          //     "Grade do Curso",
-          //     style: TextStyle(color: Colors.grey[600]),
-          //   ),
-          //   onTap: () {
-          //     Navigator.pushReplacement(
-          //       context,
-          //       MaterialPageRoute(builder: (BuildContext context) => (Grade())),
-          //     );
-          //     //createAlertDialog(context);
-          //   },
-          // ),
-          // ListTile(
-          //   leading: Icon(Icons.group_outlined),
-          //   title: Text(
-          //     "Monitoria",
-          //     style: TextStyle(color: Colors.grey[600]),
-          //   ),
-          //   onTap: () {
-          //     createAlertDialog(context);
-          //   },
-          // ),
-          // ListTile(
-          //   leading: Icon(Icons.work_outline),
-          //   title: Text(
-          //     "Central de Estágios",
-          //     style: TextStyle(color: Colors.grey[600]),
-          //   ),
-          //   onTap: () {
-          //     Navigator.pushReplacement(
-          //       context,
-          //       MaterialPageRoute(
-          //           builder: (BuildContext context) => (Estagios())),
-          //     );
-          //     //createAlertDialog(context);
-          //   },
-          // ),
-          // ListTile(
-          //   leading: Icon(Icons.help_outline),
-          //   title: Text(
-          //     "Informações e Ajuda",
-          //     style: TextStyle(color: Colors.grey[600]),
-          //   ),
-          //   onTap: () {
-          //     Navigator.pushReplacement(
-          //       context,
-          //       MaterialPageRoute(builder: (BuildContext context) => (Ajuda())),
-          //     );
-          //   },
-          // ),
           loginSaved != null || loginSaved == ""
               ? ListTile(
                   leading: Icon(Icons.logout_outlined),
@@ -280,49 +183,35 @@ class _RepoPageState extends State<RepoPage> {
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        (CadProj()),
-                                  ));
-                            },
-                            child: Text('Pesquisar'),
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                (Set<MaterialState> states) {
-                                  return color; // Use the component's default.
-                                },
-                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  // controller.searchPlaces(value);
+                                });
+                              },
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            IconButton(
-                              //iconSize: 10,
-                              icon: Icon(Icons.arrow_drop_down),
-                              onPressed: () {
-                                Text('OPA');
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   crossAxisAlignment: CrossAxisAlignment.center,
+                  //   children: [
+                  //     Expanded(
+                  //       child: Column(
+                  //         children: [
+                  //           IconButton(
+                  //             //iconSize: 10,
+                  //             icon: Icon(Icons.arrow_drop_down),
+                  //             onPressed: () {
+                  //               Text('OPA');
+                  //             },
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   Expanded(
                     child: GridView.count(
                       crossAxisCount: 2,

@@ -43,11 +43,12 @@ dependencies:
  # file_picker: any
   
   path: any
-  file_picker: ^2.1.7
+  file_picker: ^4.2.7
   # advance_pdf_viewer: ^1.2.2
-  syncfusion_flutter_pdfviewer: ^18.4.49-beta
+  syncfusion_flutter_pdfviewer: ^19.3.57-beta
   crypto: ^3.0.1
   shared_preferences: any 
+  flutter_windowmanager: ^0.2.0
  # documents_picker: ^1.0.0
 
   

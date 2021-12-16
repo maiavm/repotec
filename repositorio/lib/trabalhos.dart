@@ -96,6 +96,73 @@ class _TrabalhosPageState extends State<TrabalhosPage> {
                         ),
                       ),
                     ),
+                    Container(
+                        child: Padding(
+                      padding: const EdgeInsets.only(bottom: 15, top: 15),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Text(
+                                      snapshot.data[widget.trabalhoID]
+                                          ['orientador'],
+                                      style: TextStyle(
+                                          fontFamily: 'ChewyRegular',
+                                          color: Colors.grey[900]),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Text(
+                                      snapshot.data[widget.trabalhoID]['curso'],
+                                      style: TextStyle(
+                                          fontFamily: 'ChewyRegular',
+                                          color: Colors.grey[900]),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Text(
+                                      snapshot.data[widget.trabalhoID]['ciclo'],
+                                      style: TextStyle(
+                                          fontFamily: 'ChewyRegular',
+                                          color: Colors.grey[900]),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Text(
+                                      snapshot.data[widget.trabalhoID]
+                                          ['projeto'],
+                                      style: TextStyle(
+                                          fontFamily: 'ChewyRegular',
+                                          color: Colors.grey[900]),
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -201,7 +268,12 @@ class _TrabalhosPageState extends State<TrabalhosPage> {
                                             fontFamily: 'ChewyRegular',
                                           ),
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          () => {
+                                                //_PopUpExcluiTrabalho(context)
+                                                _displayTextInputDialog(context)
+                                              };
+                                        },
                                         icon: const Icon(Icons.launch),
                                         backgroundColor: Color(0xFFC75555),
                                       ),
@@ -234,4 +306,76 @@ class _TrabalhosPageState extends State<TrabalhosPage> {
       ),
     );
   }
+
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Pesquisar'),
+            content: TextField(
+              onChanged: (value) {
+                setState(() {
+                  // valueText = value;
+                });
+              },
+              controller: null, //_textFieldController,
+              decoration: InputDecoration(hintText: "Insira sua busca aqui:"),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                color: Color(0xFFC75555),
+                textColor: Colors.white,
+                child: Text('CANCEL'),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              FlatButton(
+                color: Color(0xFFC75555),
+                textColor: Colors.white,
+                child: Text('OK'),
+                onPressed: () {
+                  setState(() {
+                    //codeDialog = valueText;
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+            ],
+          );
+        });
+  }
+
+  // Future<void> _PopUpExcluiTrabalho(BuildContext context) async {
+  //   return showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         return AlertDialog(
+  //           title: Text('Pesquisar'),
+  //           actions: <Widget>[
+  //             FloatingActionButton.extended(
+  //               backgroundColor: Color(0xFFC75555),
+  //               onPressed: () {
+  //                 setState(() {
+  //                   Navigator.pop(context);
+  //                 });
+  //               },
+  //               label: Text('CANCEL'),
+  //             ),
+  //             FloatingActionButton.extended(
+  //               backgroundColor: Color(0xFFC75555),
+  //               onPressed: () {
+  //                 setState(() {
+  //                   Navigator.pop(context);
+  //                 });
+  //               },
+  //               label: Text('Cancelar'),
+  //             ),
+  //           ],
+  //         );
+  //       });
+  // }
 }

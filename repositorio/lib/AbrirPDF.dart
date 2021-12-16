@@ -1,5 +1,6 @@
 //import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 // import 'package:syncfusion_flutter_pdf/pdf.dart';
 
@@ -14,61 +15,100 @@ class ViewPdf extends StatefulWidget {
 class _ViewPdfState extends State<ViewPdf> {
   PdfViewerController _pdfViewerController;
 
+  telasegura() async {
+    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  }
+
   @override
   void initState() {
     _pdfViewerController = PdfViewerController();
     super.initState();
+    telasegura();
   }
 
   PdfTextSearchResult _searchResult;
   TextEditingController _textFieldController = TextEditingController();
+  bool tocado = false;
 
   @override
   Widget build(BuildContext context) {
     var pdf = widget.pdf;
     return Scaffold(
       appBar: AppBar(
+        title: Container(
+          child: SizedBox(
+            width: 600,
+            child: TextField(
+              controller: _textFieldController,
+              style: TextStyle(
+                color: Colors.white,
+              ),
+              cursorColor: Colors.white,
+              decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+                // labelText: "Pesquise uma palavra: ",
+                fillColor: Colors.white,
+                labelStyle: TextStyle(
+                    fontFamily: 'ChewyRegular',
+                    fontSize: 20.0,
+                    color: Colors.white),
+                hintText: "Pesquise uma palavra:",
+                hintStyle: TextStyle(color: Colors.white),
+              ),
+              onChanged: (value) async {
+                _searchResult = await _pdfViewerController?.searchText(
+                  _textFieldController.text,
+                  // searchOption: null
+                );
+                setState(() {});
+              },
+            ),
+          ),
+        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           tooltip: 'Voltar',
           onPressed: () {
             Navigator.pop(context);
-            //createAlertDialog(context);
           },
-        ), //IconB
-        title: Text(
-          'trabalho',
-          style: TextStyle(fontFamily: 'ChewyRegular', fontSize: 30),
         ),
-        centerTitle: true,
         backgroundColor: Color(0xFFC75555),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.keyboard_arrow_up,
-              color: Colors.white,
+          SizedBox(
+            width: 100,
+            child: Row(
+              children: [
+                Visibility(
+                  visible: _searchResult?.hasResult ?? false,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.keyboard_arrow_up,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      _searchResult?.previousInstance();
+                    },
+                  ),
+                ),
+                Visibility(
+                  visible: _searchResult?.hasResult ?? false,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      _searchResult?.nextInstance();
+                    },
+                  ),
+                ),
+              ],
             ),
-            onPressed: () {
-              _pdfViewerController.previousPage();
-            },
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.keyboard_arrow_down,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              _pdfViewerController.nextPage();
-            },
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-            onPressed: () => {
-              _displayTextInputDialog(context),
-            },
           ),
           Visibility(
             visible: _searchResult?.hasResult ?? false,
@@ -84,36 +124,12 @@ class _ViewPdfState extends State<ViewPdf> {
               },
             ),
           ),
-          Visibility(
-            visible: _searchResult?.hasResult ?? false,
-            child: IconButton(
-              icon: Icon(
-                Icons.keyboard_arrow_up,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                _searchResult?.previousInstance();
-              },
-            ),
-          ),
-          Visibility(
-            visible: _searchResult?.hasResult ?? false,
-            child: IconButton(
-              icon: Icon(
-                Icons.keyboard_arrow_down,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                _searchResult?.nextInstance();
-              },
-            ),
-          ),
         ],
       ),
       body: SfPdfViewer.network(
           'https://rumanian-straighten.000webhostapp.com/repo/PDFs/$pdf',
           controller: _pdfViewerController,
-          searchTextHighlightColor: Colors.yellow),
+          searchTextHighlightColor: Color(0xFFC75555)),
     );
   }
 
